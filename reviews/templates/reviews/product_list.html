@@ -1,0 +1,23 @@
+{% extends 'reviews/base.html' %}
+
+{% block title %}
+<h2>Product list</h2>
+{% endblock %}
+
+{% block content %}
+{% if product_list %}
+<div>
+    {% for product in product_list %}
+    <div>
+        <h4><a href="{% url 'reviews:product_detail' product.id %}">
+        {{ product.name }}
+        </a></h4>
+        <h5>{{ product.review_set.count }} reviews</h5>
+        <h5>{{ product.average_rating | floatformat }} average rating</h5>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+    <p>No products are available.</p>
+{% endif %}
+{% endblock %}
